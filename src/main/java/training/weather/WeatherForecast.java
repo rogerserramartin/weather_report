@@ -28,8 +28,9 @@ public class WeatherForecast {
 		if (city.getDatetime() == null) {
 			city.setDatetime(new Date());
 		}
-		// this is the same as saying our_city.date <= current_date
-		if (!city.getDatetime().after(new Date())) {
+		//6 days to milliseconds for future forecasting
+		int sixDays = 1000 * 60 * 60 * 24 * 6;
+		if (city.getDatetime().before(new Date(new Date().getTime() + sixDays))) {
 			String weather_forecast = weatherRepository.getWeather(city);
 			city.setWeather(weather_forecast);
 
