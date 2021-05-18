@@ -10,31 +10,21 @@ import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import training.model.City;
+import training.repository.Repository;
 
 public class WeatherForecast {
 
-	public String getCityWeather(City city) throws IOException {
+	private static final Repository weatherRepository = new Repository();
+
+	public String getCityWeather(City city) {
 		if (city.getDatetime() == null) {
 			city.setDatetime(new Date());
 		}
 		if (city.getDatetime().before(new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 6)))) {
-			HttpRequestFactory rf = new NetHttpTransport().createRequestFactory();
-			HttpRequest req = rf
-				.buildGetRequest(new GenericUrl("https://www.metaweather.com/api/location/search/?query=" + city.getName()));
-			String r = req.execute().parseAsString();
-			JSONArray array = new JSONArray(r);
-			String woe = array.getJSONObject(0).get("woeid").toString();
-			rf = new NetHttpTransport().createRequestFactory();
-			req = rf.buildGetRequest(new GenericUrl("https://www.metaweather.com/api/location/" + woe));
-			r = req.execute().parseAsString();
-			JSONArray results = new JSONObject(r).getJSONArray("consolidated_weather");
-			for (int i = 0; i < results.length(); i++) {
-				if (new SimpleDateFormat("yyyy-MM-dd").format(city.getDatetime())
-					.equals(results.getJSONObject(i).get("applicable_date").toString())) {
-					return results.getJSONObject(i).get("weather_state_name").toString();
-				}
-			}
+			String weather_forecast = weatherRepository.getWeather(city);
+			city.setWeather(weather_forecast);
+
 		}
-		return "";
+		return city.getWeather();
 	}
 }
