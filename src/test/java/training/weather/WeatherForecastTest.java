@@ -9,18 +9,8 @@ import training.model.City;
 
 public class WeatherForecastTest {
 
-	/*
 	@Test
-	public void unfinished_test() throws IOException {
-		WeatherForecast weatherForecast = new WeatherForecast();
-		String forecast = weatherForecast.getCityWeather("Madrid", new Date());
-		System.out.println(forecast);
-	}
-
-	 */
-
-	@Test
-	public void model_test() throws IOException {
+	public void model_test() {
 		City madrid = new City("Madrid", new Date());
 		WeatherForecast weatherForecast = new WeatherForecast();
 		String forecast = weatherForecast.getCityWeather(madrid);
