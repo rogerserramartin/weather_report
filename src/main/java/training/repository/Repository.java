@@ -1,5 +1,4 @@
 package training.repository;
-
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestFactory;
@@ -7,18 +6,32 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import training.model.City;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+/**
+ * This class is used to interact with the API
+ */
+
 public class Repository {
 
+    /**
+     * these are some URLS that need to be static and final
+     */
     private static final String QUERY_URL = "https://www.metaweather.com/api/location/search/?query=";
     private static final String LOCATION_URL = "https://www.metaweather.com/api/location/";
 
+    /**
+     * empty constructor
+     */
     public Repository() {
     }
 
+    /**
+     * Method used to get the weather of a given city
+     * @param city is an instance of the City.java class
+     * @return returns a String, containing weather report
+     */
     public String getWeather(City city) {
 
         // HTTP request

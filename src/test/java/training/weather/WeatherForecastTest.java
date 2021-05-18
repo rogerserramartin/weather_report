@@ -1,8 +1,4 @@
 package training.weather;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 import org.junit.Test;
 import training.model.City;
@@ -17,5 +13,4 @@ public class WeatherForecastTest {
 		madrid.setWeather(forecast);
 		System.out.println(madrid.getWeather());
 	}
-
 }

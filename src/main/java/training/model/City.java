@@ -7,12 +7,21 @@ import java.util.Date;
  */
 public class City {
 
+    /**
+     * official name of the city, used by the api as a query parameter
+     */
     private String name;
+    /**
+     * specific point in time to get the forecasting
+     */
     private Date datetime;
+    /**
+     * current weather of a given city
+     */
     private String weather;
 
     /**
-     * We will access the weather via API, so we can't set it manually
+     * Constructor class with name and datetime
      * @param name is the name of the city
      * @param datetime is the date which we want to get its weather
      */
@@ -21,30 +30,58 @@ public class City {
         this.datetime = datetime;
     }
 
-    // We don't need to provide the date with this constructor
+    /**
+     * Constructor class without a date
+     * @param name is the name of the city
+     */
+
     public City(String name) {
         this.name = name;
     }
+
+    /**
+     * @return name of the city
+     */
 
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name name to set
+     */
+
     public void setName(String name) {
         this.name = name;
     }
+
+    /**
+     * @return the date we provided, or the current one
+     */
 
     public Date getDatetime() {
         return datetime;
     }
 
+    /**
+     * @param datetime date to set
+     */
+
     public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
 
+    /**
+     * @return weather forecasting (light clouds, heavy clouds...)
+     */
+
     public String getWeather() {
         return weather;
     }
+
+    /**
+     * @param weather weather to set
+     */
 
     public void setWeather(String weather) {
         this.weather = weather;
